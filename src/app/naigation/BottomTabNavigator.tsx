@@ -14,7 +14,6 @@ export default function BottomTabNavigator() {
         <Tab.Navigator
             screenOptions={({ route }) => ({
                 headerShown: false,
-
                 tabBarIcon: ({ color, size }) => {
                     if (route.name === 'Home') {
                         return <Home size={size} color={color} />
@@ -33,15 +32,16 @@ export default function BottomTabNavigator() {
 
                 tabBarStyle: {
                     backgroundColor: '#FFFFFF',
-                    borderTopWidth: 0,
+                    height: 65,
                     elevation: 8,
-                    height: 60,
+                    paddingTop: 5,
+                    paddingBottom: 5,
                 },
+                tabBarItemStyle: {
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }
 
-                tabBarLabelStyle: {
-                    fontSize: 12,
-                    marginBottom: 5,
-                },
             })}
         >
             <Tab.Screen name="Home" component={HomeScreen} />
