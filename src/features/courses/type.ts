@@ -19,6 +19,13 @@ export interface CourseType {
 export type SyncStatus = 'idle' | 'syncing' | 'success' | 'error';
 
 export type RootStackParamList = {
-  Courses: undefined;
-  CourseDetail: { courseId: string };
-};
+  MainTabs: undefined
+  CourseDetail: { id: string }
+}
+
+export type BottomTabParamList = {
+  Home: undefined
+  Courses: undefined
+  Enrolled: undefined
+  Profile: undefined
+}
