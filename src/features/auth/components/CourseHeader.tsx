@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { formatTime } from '../../../shared/utils/dateUtils';
 import SearchInput from '../../../shared/components/SearchInput';
 import CourseFilter from './CourseFilter';
+import HorizontalPillSelector from '../../../shared/components/HorizontalPillSelector';
+import { CATEGORIES } from '../../courses/constants';
 
 export default function CourseHeader() {
     let isConnected = true
@@ -45,6 +47,21 @@ export default function CourseHeader() {
                 </TouchableOpacity>
             </View>
             {showFilters && <CourseFilter />}
+            <HorizontalPillSelector items={CATEGORIES} selected='All' onSelect={() => {
+
+            }} />
+
+            <View style={styles.summaryContainer}>
+                <Text style={styles.summaryText}>
+                    {1} {1 === 1 ? 'Course' : 'Courses'} Found
+                </Text>
+            </View>
+
+            {/* {store.errorMessage && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>⚠️ {store.errorMessage}</Text>
+        </View>
+      )} */}
         </View>
     )
 }

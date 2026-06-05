@@ -1,6 +1,6 @@
-export const CATEGORIES = ['All', 'Design', 'Development', 'Business'] as const;
+export const CATEGORIES = ['All', 'Design', 'Development', 'Business'];
 
-export const LEVELS = ['All', 'Beginner', 'Intermediate', 'Advanced'] as const;
+export const LEVELS = ['All', 'Beginner', 'Intermediate', 'Advanced'];
 
 export const SORT_OPTIONS = [
   { label: 'Rating', value: 'rating' },
