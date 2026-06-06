@@ -43,6 +43,7 @@ export async function pullChanges(lastSync: number | null) {
                         c.durationWeeks = item.duration_weeks;
                         c.priceUsd = item.price_usd;
                         c.isPremium = item.is_premium;
+                        c.isEnrolled = item.isEnrolled;
                         c.tags = item.tags;
                         c.rating = item.rating;
                         c.updatedAt = new Date(item.updated_at).getTime();
@@ -59,6 +60,7 @@ export async function pullChanges(lastSync: number | null) {
                         c.durationWeeks = item.duration_weeks;
                         c.priceUsd = item.price_usd;
                         c.isPremium = item.is_premium;
+                        c.isEnrolled = item.is_enrolled;
                         c.tags = item.tags;
                         c.rating = item.rating;
                         c.updatedAt = new Date(item.updated_at).getTime();
