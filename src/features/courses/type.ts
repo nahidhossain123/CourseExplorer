@@ -23,11 +23,7 @@ export type LocalSyncStatus =
   | 'pending_delete'
   | 'failed';
 
-export type SyncStatus =
-  | "synced"
-  | "pending_create"
-  | "pending_update"
-  | "pending_delete";
+export type SyncStatus = 'idle' | 'syncing' | 'success' | 'error';
 
 export type RootStackParamList = {
   MainTabs: undefined
