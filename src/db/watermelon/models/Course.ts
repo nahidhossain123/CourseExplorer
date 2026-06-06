@@ -12,6 +12,7 @@ export class Course extends Model {
     @field('duration_weeks') durationWeeks!: number;
     @field('price_usd') priceUsd!: number;
     @field('is_premium') isPremium!: boolean;
+    @field('is_enrolled') isEnrolled!: boolean;
 
     @field('tags') tags!: string;
     @field('rating') rating!: number;

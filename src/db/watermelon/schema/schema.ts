@@ -14,7 +14,7 @@ export const schema = appSchema({
                 { name: 'duration_weeks', type: 'number' },
                 { name: 'price_usd', type: 'number' },
                 { name: 'is_premium', type: 'boolean' },
-
+                { name: 'is_enrolled', type: 'boolean' },
                 { name: 'tags', type: 'string' },
                 { name: 'rating', type: 'number' },
 

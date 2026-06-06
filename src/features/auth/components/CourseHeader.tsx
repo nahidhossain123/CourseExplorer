@@ -6,6 +6,7 @@ import CourseFilter from './CourseFilter';
 import HorizontalPillSelector from '../../../shared/components/HorizontalPillSelector';
 import { CATEGORIES } from '../../courses/constants';
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { useCourseStore } from '../../../store/courseStore';
 
 
 type CourseHeaderPropsType = {
@@ -13,6 +14,7 @@ type CourseHeaderPropsType = {
     open: boolean
 }
 export default function CourseHeader({ onFilterClick, open }: CourseHeaderPropsType) {
+    const { filters, setFilter, courses } = useCourseStore();
     let isConnected = true
     let lastSyncedAt = Date.now()
     const [search, setSearch] = useState("")
@@ -40,7 +42,10 @@ export default function CourseHeader({ onFilterClick, open }: CourseHeaderPropsT
 
             {/* Search Input and Filter Toggle */}
             <View style={styles.searchRow}>
-                <SearchInput value={search} onChange={setSearch} />
+                <SearchInput
+                    value={filters.search}
+                    onChange={(text) => setFilter('search', text)}
+                />
 
                 <TouchableOpacity
                     style={[styles.filterToggleBtn, open && styles.filterToggleBtnActive]}
@@ -55,13 +60,15 @@ export default function CourseHeader({ onFilterClick, open }: CourseHeaderPropsT
                 </TouchableOpacity>
             </View>
             {/* {showFilters && <CourseFilter />} */}
-            <HorizontalPillSelector items={CATEGORIES} selected='All' onSelect={() => {
-
-            }} />
+            <HorizontalPillSelector
+                items={CATEGORIES}
+                selected={filters.category}
+                onSelect={(value) => setFilter('category', value)}
+            />
 
             <View style={styles.summaryContainer}>
                 <Text style={styles.summaryText}>
-                    {1} {1 === 1 ? 'Course' : 'Courses'} Found
+                    {courses.length} {courses.length === 1 ? 'Course' : 'Courses'} Found
                 </Text>
             </View>
 

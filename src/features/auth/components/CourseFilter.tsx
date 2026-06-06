@@ -1,31 +1,32 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { LEVELS, SORT_OPTIONS } from '../../courses/constants';
+import { useCourseStore } from '../../../store/courseStore';
 
 export default function CourseFilter() {
-    const [priceFilter, setPriceFilter] = useState<'All' | 'Free' | 'Premium'>('All');
-    const [enrollFilter, setEnrollFilter] = useState<'All' | 'Enrolled' | 'Not Enrolled'>('All');
-    const [filtersExpanded, setFiltersExpanded] = useState(false);
+    const { filters, setFilter, resetFilters } = useCourseStore();
 
-    const resetAllFilters = () => {
-        // setPriceFilter('All');
-        // setEnrollFilter('All');
-        // store.setSelectedLevel(null);
-        // store.setSelectedSort(null);
-        // setFiltersExpanded(false);
-    };
     return (
         <View style={styles.filtersPanel}>
-            {/* Category Dropdown/Selector equivalent - in panel */}
+
+            {/* ================= PRICE STATUS SORT ================= */}
             <Text style={styles.filterTitle}>Price Model</Text>
             <View style={styles.filterGroup}>
-                {(['All', 'Free', 'Premium'] as const).map((opt) => (
+                {(['all', 'free', 'premium'] as const).map((opt) => (
                     <TouchableOpacity
                         key={opt}
-                        style={[styles.filterChip, priceFilter === opt && styles.filterChipActive]}
-                        onPress={() => setPriceFilter(opt)}
+                        style={[
+                            styles.filterChip,
+                            filters.price === opt && styles.filterChipActive,
+                        ]}
+                        onPress={() => setFilter('price', opt)}
                     >
-                        <Text style={[styles.filterChipText, priceFilter === opt && styles.filterChipTextActive]}>
+                        <Text
+                            style={[
+                                styles.filterChipText,
+                                filters.price === opt && styles.filterChipTextActive,
+                            ]}
+                        >
                             {opt}
                         </Text>
                     </TouchableOpacity>
@@ -34,54 +35,81 @@ export default function CourseFilter() {
 
             <Text style={styles.filterTitle}>Enrollment Status</Text>
             <View style={styles.filterGroup}>
-                {(['All', 'Enrolled', 'Not Enrolled'] as const).map((opt) => (
+                {(['all', 'enrolled', 'not_enrolled'] as const).map((opt) => (
                     <TouchableOpacity
                         key={opt}
-                        style={[styles.filterChip, enrollFilter === opt && styles.filterChipActive]}
-                        onPress={() => setEnrollFilter(opt)}
+                        style={[
+                            styles.filterChip,
+                            filters.enrollment === opt && styles.filterChipActive,
+                        ]}
+                        onPress={() => setFilter('enrollment', opt)}
                     >
-                        <Text style={[styles.filterChipText, enrollFilter === opt && styles.filterChipTextActive]}>
+                        <Text
+                            style={[
+                                styles.filterChipText,
+                                filters.enrollment === opt && styles.filterChipTextActive,
+                            ]}
+                        >
                             {opt}
                         </Text>
                     </TouchableOpacity>
                 ))}
             </View>
 
-            <Text style={styles.filterTitle}>Course Level</Text>
+            {/* ================= DIFFICULTY LEVEL SORT ================= */}
+            {/* <Text style={styles.filterTitle}>Course Level</Text>
             <View style={styles.filterGroup}>
-                {LEVELS.map((lvl, index) => (
+                {(['all', ...LEVELS] as const).map((lvl) => (
                     <TouchableOpacity
-                        key={index}
-                        style={[styles.filterChip, index == 0 && styles.filterChipActive]}
-                        onPress={() => { }}
+                        key={lvl}
+                        style={[
+                            styles.filterChip,
+                            filters.level === lvl && styles.filterChipActive,
+                        ]}
+                        onPress={() => setFilter('level', lvl)}
                     >
-                        <Text style={[styles.filterChipText, index == 0 && styles.filterChipTextActive]}>
+                        <Text
+                            style={[
+                                styles.filterChipText,
+                                filters.level === lvl && styles.filterChipTextActive,
+                            ]}
+                        >
                             {lvl}
                         </Text>
                     </TouchableOpacity>
                 ))}
-            </View>
+            </View> */}
 
+            {/* ================= SORT BY ================= */}
             <Text style={styles.filterTitle}>Sort By</Text>
             <View style={styles.filterGroup}>
                 {SORT_OPTIONS.map((opt) => (
                     <TouchableOpacity
                         key={opt.value}
-                        style={[styles.filterChip, 'rating' === opt.value && styles.filterChipActive]}
-                        onPress={() => { }}
+                        style={[
+                            styles.filterChip,
+                            filters.sortBy === opt.value && styles.filterChipActive,
+                        ]}
+                        onPress={() => setFilter('sortBy', opt.value)}
                     >
-                        <Text style={[styles.filterChipText, 'rating' === opt.value && styles.filterChipTextActive]}>
+                        <Text
+                            style={[
+                                styles.filterChipText,
+                                filters.sortBy === opt.value && styles.filterChipTextActive,
+                            ]}
+                        >
                             {opt.label}
                         </Text>
                     </TouchableOpacity>
                 ))}
             </View>
 
-            <TouchableOpacity style={styles.resetBtn} onPress={resetAllFilters}>
+            {/* ================= RESET ALL FILTERS ================= */}
+            <TouchableOpacity style={styles.resetBtn} onPress={resetFilters}>
                 <Text style={styles.resetBtnText}>Clear All Filters</Text>
             </TouchableOpacity>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

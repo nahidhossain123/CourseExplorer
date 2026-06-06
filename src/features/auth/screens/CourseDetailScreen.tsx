@@ -13,6 +13,7 @@ import {
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
 import { useCourseStore } from '../../../store/courseStore';
 import { RootStackParamList } from '../../../features/courses/type';
+import AppSafeArea from '../../../shared/components/layout/AppSafeArea';
 
 type CourseDetailRouteProp = RouteProp<RootStackParamList, 'CourseDetail'>;
 
@@ -48,9 +49,7 @@ export default function CourseDetailScreen() {
     const imageUrl = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=600&auto=format&fit=crop';
 
     return (
-        <View style={styles.container}>
-            <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
-
+        <AppSafeArea>
             {/* Scrollable Content */}
             <ScrollView contentContainerStyle={styles.scrollContent} bounces={false}>
 
@@ -272,7 +271,7 @@ export default function CourseDetailScreen() {
                     </Text>
                 </TouchableOpacity>
             </View>
-        </View>
+        </AppSafeArea>
     );
 }
 

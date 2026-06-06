@@ -5,6 +5,7 @@ export interface CourseType {
   instructorName: string;
   durationWeeks: number;
   priceUsd: number;
+  isEnrolled: boolean;
   isPremium: boolean;
   tags: string;
   rating: number;
@@ -31,3 +32,26 @@ export type BottomTabParamList = {
   Enrolled: undefined
   Profile: undefined
 }
+
+
+export type CourseLevel = 'beginner' | 'intermediate' | 'advanced';
+
+export type SortOption =
+  | 'rating'
+  | 'price_low'
+  | 'price_high'
+  | 'duration';
+
+export type CourseFilters = {
+  search: string;
+
+  category: string;
+
+  price: 'all' | 'free' | 'premium';
+
+  enrollment: 'all' | 'enrolled' | 'not_enrolled';
+
+  level: 'all' | 'beginner' | 'intermediate' | 'advanced';
+
+  sortBy: 'rating' | 'price_low' | 'price_high' | 'duration';
+};

@@ -7,9 +7,8 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { useCourseStore } from '../../../store/courseStore';
 
 export default function Courses() {
-    const courses = useCourseStore((state) => state.courses);
+    const { courses, isLoading } = useCourseStore();
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
-    const [isLoading, setIsloading] = useState(false)
     const [refreshing, setRefreshing] = useState(false)
     const processedCourses: CourseType[] = []
     const handleRefresh = () => {
