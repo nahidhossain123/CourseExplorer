@@ -1,17 +1,72 @@
-import { View, Text, StatusBar } from 'react-native'
-import React from 'react'
+import { View, Text, StatusBar, StyleSheet } from 'react-native'
+import React, { useCallback, useRef, useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import AppSafeArea from '../../../shared/components/layout/AppSafeArea'
 import CourseHeader from '../components/CourseHeader'
 import Courses from '../components/Courses'
+import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet'
+import { BottomSheetView } from '@gorhom/bottom-sheet'
+import CourseFilter from '../components/CourseFilter'
 
 export default function CoursesScreen() {
+    const bottomSheetRef = useRef<BottomSheet>(null);
+    const [open, setOpen] = useState(false)
+
+    const handleToggle = () => {
+        setOpen(prev => {
+            const next = !prev;
+
+            if (next) {
+                bottomSheetRef.current?.expand();
+            } else {
+                bottomSheetRef.current?.close();
+            }
+
+            return next;
+        });
+    };
+
+    const renderBackdrop = useCallback(
+        (props: any) => (
+            <BottomSheetBackdrop
+                {...props}
+                appearsOnIndex={0}
+                disappearsOnIndex={-1}
+                pressBehavior="close"
+            />
+        ),
+        []
+    );
+
     return (
-        <AppSafeArea>
-            <View>
-                <CourseHeader />
+        <>
+            <View style={{ flex: 1 }}>
+                <CourseHeader onFilterClick={handleToggle} open={open} />
                 <Courses />
             </View>
-        </AppSafeArea>
+            <BottomSheet
+                ref={bottomSheetRef}
+                enablePanDownToClose={true}
+                onChange={(index) => {
+                    console.log('Checnage')
+                    setOpen(!open)
+                }}
+                index={1}
+                snapPoints={["30%", "60%"]}
+                backdropComponent={renderBackdrop}
+            >
+                <BottomSheetView style={styles.contentContainer}>
+                    <CourseFilter />
+                </BottomSheetView>
+            </BottomSheet>
+        </>
     )
 }
+
+const styles = StyleSheet.create({
+    contentContainer: {
+        flex: 1,
+        padding: 36,
+        alignItems: 'center',
+    },
+})

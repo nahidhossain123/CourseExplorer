@@ -2,6 +2,7 @@ module.exports = {
   presets: ['module:@react-native/babel-preset'],
   plugins: [
     ['@babel/plugin-proposal-decorators', { legacy: true }],
+
     [
       'module:react-native-dotenv',
       {
@@ -10,12 +11,13 @@ module.exports = {
         path: '.env',
         blocklist: null,
         allowlist: null,
-        blacklist: null, // DEPRECATED
-        whitelist: null, // DEPRECATED
+        blacklist: null,
+        whitelist: null,
         safe: false,
         allowUndefined: true,
         verbose: false,
       },
     ],
-  ]
+    'react-native-reanimated/plugin',
+  ],
 };

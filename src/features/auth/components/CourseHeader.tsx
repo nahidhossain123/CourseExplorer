@@ -1,16 +1,22 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import { formatTime } from '../../../shared/utils/dateUtils';
 import SearchInput from '../../../shared/components/SearchInput';
 import CourseFilter from './CourseFilter';
 import HorizontalPillSelector from '../../../shared/components/HorizontalPillSelector';
 import { CATEGORIES } from '../../courses/constants';
+import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
 
-export default function CourseHeader() {
+
+type CourseHeaderPropsType = {
+    onFilterClick: () => void,
+    open: boolean
+}
+export default function CourseHeader({ onFilterClick, open }: CourseHeaderPropsType) {
     let isConnected = true
     let lastSyncedAt = Date.now()
-    const [showFilters, setShowFilters] = useState(false)
     const [search, setSearch] = useState("")
+
     return (
 
         <View style={styles.header}>
@@ -37,16 +43,18 @@ export default function CourseHeader() {
                 <SearchInput value={search} onChange={setSearch} />
 
                 <TouchableOpacity
-                    style={[styles.filterToggleBtn, showFilters && styles.filterToggleBtnActive]}
-                    onPress={() => setShowFilters(!showFilters)}
+                    style={[styles.filterToggleBtn, open && styles.filterToggleBtnActive]}
+                    onPress={() => {
+                        onFilterClick()
+                    }}
                     activeOpacity={0.7}
                 >
-                    <Text style={[styles.filterToggleBtnIcon, showFilters && styles.filterToggleBtnIconActive]}>
-                        {showFilters ? '✕' : '⚙️'}
+                    <Text style={[styles.filterToggleBtnIcon, open && styles.filterToggleBtnIconActive]}>
+                        {open ? '✕' : '⚙️'}
                     </Text>
                 </TouchableOpacity>
             </View>
-            {showFilters && <CourseFilter />}
+            {/* {showFilters && <CourseFilter />} */}
             <HorizontalPillSelector items={CATEGORIES} selected='All' onSelect={() => {
 
             }} />
@@ -67,6 +75,7 @@ export default function CourseHeader() {
 }
 
 const styles = StyleSheet.create({
+
     header: {
         backgroundColor: '#FFFFFF',
         paddingHorizontal: 16,
@@ -245,7 +254,6 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
     },
     summaryContainer: {
-        paddingHorizontal: 16,
         paddingTop: 12,
         paddingBottom: 4,
     },

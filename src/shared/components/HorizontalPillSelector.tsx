@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         marginVertical: 8,
     },
     scroll: {
-        paddingHorizontal: 12,
+
     },
     pill: {
         paddingHorizontal: 14,
