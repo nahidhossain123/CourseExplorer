@@ -1,11 +1,12 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { BottomTabParamList } from '../../features/courses/type'
-import HomeScreen from '../../features/auth/screens/HomeScreen'
-import CoursesScreen from '../../features/auth/screens/CoursesScreen'
-import UserProfileScreen from '../../features/auth/screens/UserProfileScreen'
-import EnrolledScreen from '../../features/auth/screens/EnrolledScreen'
+
 import { Home, BookOpen, CheckCircle, User } from 'lucide-react-native'
+import HomeScreen from '../../features/courses/screens/HomeScreen'
+import CoursesScreen from '../../features/courses/screens/CoursesScreen'
+import EnrolledScreen from '../../features/courses/screens/EnrolledScreen'
+import UserProfileScreen from '../../features/courses/screens/UserProfileScreen'
 
 const Tab = createBottomTabNavigator<BottomTabParamList>()
 

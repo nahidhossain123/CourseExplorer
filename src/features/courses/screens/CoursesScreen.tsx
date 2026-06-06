@@ -1,16 +1,13 @@
 import { View, StyleSheet } from 'react-native'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import CourseHeader from '../components/CourseHeader'
-import Courses from '../components/Courses'
+import React, { useCallback, useRef, useState } from 'react'
 import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
 import CourseFilter from '../components/CourseFilter'
-import { useCourseStore } from '../../../store/courseStore'
-import { useFocusEffect } from '@react-navigation/native'
 import AppSafeArea from '../../../shared/components/layout/AppSafeArea'
+import CourseHeader from '../components/CourseHeader'
+import Courses from '../components/Courses'
 
 export default function CoursesScreen() {
-    const courses = useCourseStore((state) => state.courses);
     const bottomSheetRef = useRef<BottomSheet>(null);
     const [open, setOpen] = useState(false)
 
@@ -39,10 +36,6 @@ export default function CoursesScreen() {
         ),
         []
     );
-
-    useEffect(() => {
-        console.log('courses', courses)
-    }, [courses])
 
     return (
         <AppSafeArea>

@@ -60,11 +60,11 @@ export default function CourseHeader({ onFilterClick, open }: CourseHeaderPropsT
                 </TouchableOpacity>
             </View>
             {/* {showFilters && <CourseFilter />} */}
-            <HorizontalPillSelector
+            {/* <HorizontalPillSelector
                 items={CATEGORIES}
                 selected={filters.category}
                 onSelect={(value) => setFilter('category', value)}
-            />
+            /> */}
 
             <View style={styles.summaryContainer}>
                 <Text style={styles.summaryText}>

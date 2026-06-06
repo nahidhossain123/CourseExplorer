@@ -6,8 +6,6 @@ import {
     Image,
     ScrollView,
     TouchableOpacity,
-    SafeAreaView,
-    StatusBar,
     Dimensions,
 } from 'react-native';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
@@ -24,21 +22,20 @@ export default function CourseDetailScreen() {
     const navigation = useNavigation();
     const { courseId } = route.params;
 
-    // Reactively fetch course details from Zustand store
     const course = useCourseStore((state) => state.courses.find((c) => c.courseId === courseId));
     //   const toggleEnrollment = useCourseStore((state) => );
 
-    // Tab State
+
     const [activeTab, setActiveTab] = useState<'Overview' | 'Curriculum' | 'Reviews'>('Overview');
 
     if (!course) {
         return (
-            <SafeAreaView style={styles.errorContainer}>
+            <AppSafeArea>
                 <Text style={styles.errorText}>Course not found.</Text>
                 <TouchableOpacity style={styles.backBtn} onPress={() => navigation.goBack()}>
                     <Text style={styles.backBtnText}>Go Back</Text>
                 </TouchableOpacity>
-            </SafeAreaView>
+            </AppSafeArea>
         );
     }
 
@@ -112,15 +109,15 @@ export default function CourseDetailScreen() {
 
                     {/* Enroll / Unenroll Action CTA */}
                     <TouchableOpacity
-                        style={[styles.actionBtn, course.isPremium ? styles.actionBtnEnrolled : styles.actionBtnNotEnrolled]}
+                        style={[styles.actionBtn, course.isEnrolled ? styles.actionBtnEnrolled : styles.actionBtnNotEnrolled]}
                         onPress={handleEnrollToggle}
                         activeOpacity={0.8}
                     >
-                        <Text style={[styles.actionBtnIcon, course.isPremium ? styles.actionBtnTextEnrolled : styles.actionBtnTextNotEnrolled]}>
-                            {course.isPremium ? '✓' : '🎓'}
+                        <Text style={[styles.actionBtnIcon, course.isEnrolled ? styles.actionBtnTextEnrolled : styles.actionBtnTextNotEnrolled]}>
+                            {course.isEnrolled ? '✓' : '🎓'}
                         </Text>
-                        <Text style={[styles.actionBtnText, course.isPremium ? styles.actionBtnTextEnrolled : styles.actionBtnTextNotEnrolled]}>
-                            {course.isPremium ? 'Enrolled (Tap to Cancel)' : 'Enroll Now'}
+                        <Text style={[styles.actionBtnText, course.isEnrolled ? styles.actionBtnTextEnrolled : styles.actionBtnTextNotEnrolled]}>
+                            {course.isEnrolled ? 'Enrolled (Tap to Cancel)' : 'Enroll Now'}
                         </Text>
                     </TouchableOpacity>
 
@@ -266,8 +263,8 @@ export default function CourseDetailScreen() {
                     <Text style={styles.floatingHeaderBtnIcon}>←</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.floatingHeaderBtn} onPress={handleEnrollToggle}>
-                    <Text style={[styles.floatingHeaderBtnIcon, course.isPremium && styles.bookmarkFilled]}>
-                        {course.isPremium ? '★' : '☆'}
+                    <Text style={[styles.floatingHeaderBtnIcon, course.isEnrolled && styles.bookmarkFilled]}>
+                        {course.isEnrolled ? '★' : '☆'}
                     </Text>
                 </TouchableOpacity>
             </View>

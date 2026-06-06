@@ -2,8 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../features/courses/type';
-import CourseDetailScreen from '../../features/auth/screens/CourseDetailScreen';
 import BottomTabNavigator from './BottomTabNavigator';
+import CourseDetailScreen from '../../features/courses/screens/CourseDetailScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

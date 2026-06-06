@@ -34,7 +34,6 @@ export const courseRepository = {
             });
         });
 
-        // 🔥 IMPORTANT: enqueue sync
         await syncRepository.enqueue({
             table: 'courses',
             operation: 'create',

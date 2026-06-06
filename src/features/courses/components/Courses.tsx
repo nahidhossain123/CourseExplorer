@@ -2,9 +2,12 @@ import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList }
 import React, { useCallback, useState } from 'react'
 import { BottomTabParamList, CourseType, RootStackParamList } from '../../courses/type';
 import { CourseCard } from './CourseCard';
+import { FlashList } from '@shopify/flash-list';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 
 import { useCourseStore } from '../../../store/courseStore';
+import CourseCardSkeleton from './CourseCardSkeletonLoading';
+import CourseCardSkeletonLoading from './CourseCardSkeletonLoading';
 
 export default function Courses() {
     const { courses, isLoading } = useCourseStore();
@@ -32,18 +35,16 @@ export default function Courses() {
 
             {/* Core Course List */}
             {isLoading ? (
-                <View style={styles.centered}>
-                    <ActivityIndicator size="large" color="#2563EB" />
-                    <Text style={styles.loadingText}>Loading courses...</Text>
-                </View>
+                <CourseCardSkeletonLoading />
             ) : (
-                <FlatList
+                <FlashList
                     data={courses}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.courseId}
                     contentContainerStyle={styles.listContent}
                     onRefresh={handleRefresh}
                     refreshing={refreshing}
+
                     ListEmptyComponent={
                         <View style={styles.emptyContainer}>
                             <Text style={styles.emptyIcon}>📚</Text>
@@ -51,9 +52,6 @@ export default function Courses() {
                             <Text style={styles.emptySubtitle}>
                                 Try searching for something else or clearing the active filters.
                             </Text>
-                            {/* <TouchableOpacity style={styles.emptyResetBtn} onPress={resetAllFilters}>
-                <Text style={styles.emptyResetBtnText}>Reset All Filters</Text>
-              </TouchableOpacity> */}
                         </View>
                     }
                 />

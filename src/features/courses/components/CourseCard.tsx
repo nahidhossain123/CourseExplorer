@@ -65,12 +65,12 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(({
             </View>
 
             <TouchableOpacity
-                style={[styles.enrollButton, course.isPremium ? styles.enrolledButton : styles.notEnrolledButton]}
+                style={[styles.enrollButton, course.isEnrolled ? styles.enrolledButton : styles.notEnrolledButton]}
                 onPress={onEnrollPress}
                 activeOpacity={0.7}
             >
-                <Text style={[styles.enrollButtonText, course.isPremium ? styles.enrolledButtonTextActive : styles.notEnrolledButtonTextActive]}>
-                    {course.isPremium ? 'Enrolled' : 'Enroll'}
+                <Text style={[styles.enrollButtonText, course.isEnrolled ? styles.enrolledButtonTextActive : styles.notEnrolledButtonTextActive]}>
+                    {course.isEnrolled ? 'Enrolled' : 'Enroll'}
                 </Text>
             </TouchableOpacity>
         </TouchableOpacity>
