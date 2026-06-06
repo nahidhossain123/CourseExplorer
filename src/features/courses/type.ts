@@ -16,7 +16,18 @@ export interface CourseType {
   updatedAt: number;
 }
 
-export type SyncStatus = 'idle' | 'syncing' | 'success' | 'error';
+export type LocalSyncStatus =
+  | 'synced'
+  | 'pending_create'
+  | 'pending_update'
+  | 'pending_delete'
+  | 'failed';
+
+export type SyncStatus =
+  | "synced"
+  | "pending_create"
+  | "pending_update"
+  | "pending_delete";
 
 export type RootStackParamList = {
   MainTabs: undefined

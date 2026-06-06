@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import RootNavigator from './naigation/RootNavigator';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
+import { database } from '../db/watermelon/database';
+import { sync } from '../sync/engine';
+import 'react-native-url-polyfill/auto';
 
 function App() {
+  useEffect(() => {
+    sync(database, new Date().toISOString());
+  }, []);
   return (
     <GestureHandlerRootView style={styles.container}>
       <SafeAreaProvider>
