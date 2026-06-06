@@ -8,6 +8,7 @@ import BottomSheet, { BottomSheetBackdrop } from '@gorhom/bottom-sheet'
 import { BottomSheetView } from '@gorhom/bottom-sheet'
 import CourseFilter from '../components/CourseFilter'
 import { useCourseStore } from '../../../store/courseStore'
+import { useFocusEffect } from '@react-navigation/native'
 
 export default function CoursesScreen() {
     const courses = useCourseStore((state) => state.courses);
@@ -44,6 +45,15 @@ export default function CoursesScreen() {
         console.log('courses', courses)
     }, [courses])
 
+    useFocusEffect(
+        useCallback(() => {
+            return () => {
+                bottomSheetRef.current?.close();
+                setOpen(false);
+            };
+        }, [])
+    );
+
     return (
         <>
             <View style={{ flex: 1 }}>
@@ -57,7 +67,7 @@ export default function CoursesScreen() {
                     console.log('Checnage')
                     setOpen(!open)
                 }}
-                index={1}
+                index={-1}
                 snapPoints={["30%", "60%"]}
                 backdropComponent={renderBackdrop}
             >

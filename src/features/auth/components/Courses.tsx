@@ -23,7 +23,7 @@ export default function Courses() {
         />
     ), []);
     return (
-        <View>
+        <View style={{ flex: 1 }}>
             {/* Error View Banner */}
             {/* {store.errorMessage && (
         <View style={styles.errorContainer}>
