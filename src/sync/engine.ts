@@ -1,8 +1,11 @@
 import { pushChanges } from './push';
 import { pullChanges } from './pull';
-import { Database } from '@nozbe/watermelondb';
 
-export async function sync(db: Database, lastSync: string) {
-    await pushChanges(db);
-    await pullChanges(db, lastSync);
+export async function sync(db: any, lastSync: number | null) {
+    try {
+        await pushChanges();
+        await pullChanges(lastSync);
+    } catch (err) {
+        console.log('Sync failed:', err);
+    }
 }

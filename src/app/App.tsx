@@ -6,10 +6,11 @@ import { StyleSheet } from 'react-native';
 import { database } from '../db/watermelon/database';
 import { sync } from '../sync/engine';
 import 'react-native-url-polyfill/auto';
+import { bootstrapApp } from './bootstrap';
 
 function App() {
   useEffect(() => {
-    sync(database, new Date().toISOString());
+    bootstrapApp();
   }, []);
   return (
     <GestureHandlerRootView style={styles.container}>

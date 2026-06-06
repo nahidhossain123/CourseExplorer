@@ -1,18 +1,13 @@
 export interface CourseType {
-  id: string;
+  courseId: string;
   title: string;
-  description: string;
-  instructor: string;
-  imageUrl: string;
+  descriptionShort: string;
+  instructorName: string;
+  durationWeeks: number;
+  priceUsd: number;
+  isPremium: boolean;
+  tags: string;
   rating: number;
-  price: number;
-  duration: string;
-  lessons: number;
-  level: 'Beginner' | 'Intermediate' | 'Advanced';
-  category: string;
-  tags: string[];
-  isEnrolled: boolean;
-  createdAt: number;
   updatedAt: number;
 }
 
@@ -27,7 +22,7 @@ export type SyncStatus = 'idle' | 'syncing' | 'success' | 'error';
 
 export type RootStackParamList = {
   MainTabs: undefined
-  CourseDetail: { id: string }
+  CourseDetail: { courseId: string }
 }
 
 export type BottomTabParamList = {

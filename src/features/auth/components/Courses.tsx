@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator, FlatList } from 'react-native'
 import React, { useCallback, useState } from 'react'
-import { CourseType } from '../../courses/type';
+import { BottomTabParamList, CourseType, RootStackParamList } from '../../courses/type';
 import { CourseCard } from './CourseCard';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationProp } from '@react-navigation/native-stack';
-import { BottomTabParamList } from '../../../app/naigation/BottomTabNavigator';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+
+import { useCourseStore } from '../../../store/courseStore';
 
 export default function Courses() {
-    const navigation = useNavigation<NavigationProp<BottomTabParamList>>();
+    const courses = useCourseStore((state) => state.courses);
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
     const [isLoading, setIsloading] = useState(false)
     const [refreshing, setRefreshing] = useState(false)
     const processedCourses: CourseType[] = []
@@ -17,7 +18,7 @@ export default function Courses() {
     const renderItem = useCallback(({ item }: { item: typeof processedCourses[number] }) => (
         <CourseCard
             course={item}
-            onPress={() => navigation.navigate('CourseDetail', { courseId: item.id })}
+            onPress={() => navigation.navigate('CourseDetail', { courseId: item.courseId })}
             onEnrollPress={() => console.log()}
         />
     ), []);
@@ -38,9 +39,9 @@ export default function Courses() {
                 </View>
             ) : (
                 <FlatList
-                    data={processedCourses}
+                    data={courses}
                     renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
+                    keyExtractor={(item) => item.courseId}
                     contentContainerStyle={styles.listContent}
                     onRefresh={handleRefresh}
                     refreshing={refreshing}

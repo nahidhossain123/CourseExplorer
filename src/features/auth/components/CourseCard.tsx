@@ -28,7 +28,7 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(({
     };
 
     // Fallback image url if none is provided
-    const imageUrl = course.imageUrl || 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=300&auto=format&fit=crop';
+    const imageUrl = 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=300&auto=format&fit=crop';
 
     return (
         <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
@@ -40,12 +40,12 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(({
                 </Text>
 
                 <Text style={styles.instructor}>
-                    by {course.instructor}
+                    by {course.instructorName}
                 </Text>
 
                 <View style={styles.metaRow}>
                     <View style={styles.badge}>
-                        <Text style={styles.badgeText}>{course.level}</Text>
+                        <Text style={styles.badgeText}>{course.tags}</Text>
                     </View>
 
                     <View style={styles.ratingRow}>
@@ -56,21 +56,21 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(({
 
                 <View style={styles.priceRow}>
                     <Text style={styles.price}>
-                        {course.price === 0 ? 'Free' : `$${course.price.toFixed(2)}`}
+                        {course.priceUsd === 0 ? 'Free' : `$${course.priceUsd.toFixed(2)}`}
                     </Text>
                     <Text style={styles.duration}>
-                        • {course.duration}
+                        • {course.durationWeeks}
                     </Text>
                 </View>
             </View>
 
             <TouchableOpacity
-                style={[styles.enrollButton, course.isEnrolled ? styles.enrolledButton : styles.notEnrolledButton]}
+                style={[styles.enrollButton, course.isPremium ? styles.enrolledButton : styles.notEnrolledButton]}
                 onPress={onEnrollPress}
                 activeOpacity={0.7}
             >
-                <Text style={[styles.enrollButtonText, course.isEnrolled ? styles.enrolledButtonTextActive : styles.notEnrolledButtonTextActive]}>
-                    {course.isEnrolled ? 'Enrolled' : 'Enroll'}
+                <Text style={[styles.enrollButtonText, course.isPremium ? styles.enrolledButtonTextActive : styles.notEnrolledButtonTextActive]}>
+                    {course.isPremium ? 'Enrolled' : 'Enroll'}
                 </Text>
             </TouchableOpacity>
         </TouchableOpacity>

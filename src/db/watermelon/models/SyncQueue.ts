@@ -7,5 +7,6 @@ export class SyncQueue extends Model {
     @field('operation') operation!: 'create' | 'update' | 'delete';
     @field('payload') payload!: string;
     @field('record_id') recordId!: string;
-    @field('status') status!: string;
+    @field('status') status!: 'pending' | 'done';
+    @field('created_at') createdAt!: number;
 }
