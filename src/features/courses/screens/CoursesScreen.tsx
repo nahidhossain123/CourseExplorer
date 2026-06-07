@@ -6,6 +6,7 @@ import CourseFilter from '../components/CourseFilter'
 import AppSafeArea from '../../../shared/components/layout/AppSafeArea'
 import CourseHeader from '../components/CourseHeader'
 import Courses from '../components/Courses'
+import { spacingX } from '../../../shared/theme/spacing'
 
 export default function CoursesScreen() {
     const bottomSheetRef = useRef<BottomSheet>(null);
@@ -65,7 +66,7 @@ export default function CoursesScreen() {
 const styles = StyleSheet.create({
     contentContainer: {
         flex: 1,
-        padding: 36,
+        padding: spacingX._36,
         alignItems: 'center',
     },
 })

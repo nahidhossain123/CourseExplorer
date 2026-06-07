@@ -2,6 +2,10 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { LEVELS, SORT_OPTIONS } from '../../courses/constants';
 import { useCourseStore } from '../../../store/courseStore';
+import { fontSize, fontweight } from '../../../shared/theme/typography';
+import { colors } from '../../../shared/theme/colors';
+import { spacingX, spacingY } from '../../../shared/theme/spacing';
+import { radius } from '../../../shared/theme/radius';
 
 export default function CourseFilter() {
     const { filters, setFilter, resetFilters } = useCourseStore();
@@ -115,53 +119,53 @@ export default function CourseFilter() {
 const styles = StyleSheet.create({
 
     filtersPanel: {
-        backgroundColor: '#FFFFFF',
-        paddingVertical: 12,
+        backgroundColor: colors.surface,
+        paddingVertical: spacingY._12,
     },
     filterTitle: {
-        fontSize: 12,
-        fontWeight: '700',
-        color: '#475569',
-        marginTop: 8,
-        marginBottom: 6,
+        fontSize: fontSize._12,
+        fontWeight: fontweight.bold,
+        color: colors.textMuted,
+        marginTop: spacingY._8,
+        marginBottom: spacingY._8,
         textTransform: 'uppercase',
     },
     filterGroup: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        gap: 8,
-        marginBottom: 8,
+        gap: spacingX._8,
+        marginBottom: spacingY._8,
     },
     filterChip: {
-        backgroundColor: '#F1F5F9',
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 8,
+        backgroundColor: colors.surfaceSoft,
+        paddingHorizontal: spacingX._12,
+        paddingVertical: spacingX._8,
+        borderRadius: radius._8,
     },
     filterChipActive: {
-        backgroundColor: '#2563EB',
+        backgroundColor: colors.primary,
     },
     filterChipText: {
-        fontSize: 12,
-        fontWeight: '600',
-        color: '#475569',
+        fontSize: fontSize._12,
+        fontWeight: fontweight.bold,
+        color: colors.textMuted,
     },
     filterChipTextActive: {
-        color: '#FFFFFF',
+        color: colors.white,
     },
     resetBtn: {
-        backgroundColor: '#F8FAFC',
+        backgroundColor: colors.surfaceSoft,
         borderWidth: 1,
-        borderColor: '#E2E8F0',
+        borderColor: colors.border,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingVertical: 10,
-        borderRadius: 10,
-        marginTop: 12,
+        paddingVertical: spacingX._8,
+        borderRadius: radius._8,
+        marginTop: spacingX._12,
     },
     resetBtnText: {
-        fontSize: 13,
-        fontWeight: '700',
-        color: '#EF4444',
+        fontSize: fontSize._12,
+        fontWeight: fontweight.bold,
+        color: colors.error,
     },
 });

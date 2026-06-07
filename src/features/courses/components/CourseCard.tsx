@@ -1,6 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { CourseType } from '../../courses/type';
+import { radius } from '../../../shared/theme/radius';
+import { spacingX, spacingY } from '../../../shared/theme/spacing';
+import { shadows } from '../../../shared/theme/shadows';
+import { fontSize, fontweight } from '../../../shared/theme/typography';
+import { colors } from '../../../shared/theme/colors';
 
 interface CourseCardProps {
     course: CourseType;
@@ -80,15 +85,12 @@ export const CourseCard: React.FC<CourseCardProps> = React.memo(({
 const styles = StyleSheet.create({
     card: {
         flexDirection: 'row',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 16,
-        padding: 12,
-        marginVertical: 6,
-        marginHorizontal: 16,
-        shadowColor: '#0F172A',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.05,
-        shadowRadius: 10,
+        backgroundColor: colors.white,
+        borderRadius: radius._16,
+        padding: spacingX._12,
+        marginVertical: spacingY._8,
+        marginHorizontal: spacingX._16,
+        ...shadows.md,
         elevation: 2,
         alignItems: 'center',
         position: 'relative',
@@ -96,109 +98,109 @@ const styles = StyleSheet.create({
     image: {
         width: 88,
         height: 88,
-        borderRadius: 12,
-        backgroundColor: '#E2E8F0',
+        borderRadius: radius._12,
+        backgroundColor: colors.borderSoft,
     },
     content: {
         flex: 1,
-        marginLeft: 14,
+        marginLeft: spacingX._12,
         justifyContent: 'center',
-        paddingRight: 60, // Leave space for the enroll action button
+        paddingRight: 60,
     },
     title: {
-        fontSize: 15,
-        fontWeight: '700',
-        color: '#0F172A',
-        lineHeight: 20,
+        fontSize: fontSize._16,
+        fontWeight: fontweight.bold,
+        color: colors.textPrimary,
+        lineHeight: fontSize._20,
         marginBottom: 2,
     },
     instructor: {
-        fontSize: 12,
-        color: '#64748B',
-        marginBottom: 6,
+        fontSize: fontSize._12,
+        color: colors.textMuted,
+        marginBottom: spacingY._8,
     },
     metaRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 6,
+        marginBottom: spacingY._8,
         flexWrap: 'wrap',
-        gap: 8,
+        gap: spacingX._8,
     },
     badge: {
-        backgroundColor: '#EFF6FF',
-        paddingHorizontal: 8,
-        paddingVertical: 2,
-        borderRadius: 6,
+        backgroundColor: colors.primaryLight,
+        paddingHorizontal: spacingX._8,
+        paddingVertical: spacingY._2,
+        borderRadius: radius._6,
     },
     badgeText: {
-        fontSize: 10,
+        fontSize: fontSize._10,
         fontWeight: '600',
-        color: '#2563EB',
+        color: colors.primary,
     },
     ratingRow: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     ratingText: {
-        fontSize: 11,
-        fontWeight: '700',
-        color: '#F59E0B',
-        marginRight: 4,
+        fontSize: fontSize._12,
+        fontWeight: fontweight.bold,
+        color: colors.warning,
+        marginRight: spacingX._4,
     },
     starsContainer: {
         flexDirection: 'row',
     },
     star: {
-        fontSize: 10,
-        marginRight: 1,
+        fontSize: fontSize._10,
+        marginRight: spacingX._2,
     },
     starFilled: {
-        color: '#F59E0B',
+        color: colors.warning,
     },
     starEmpty: {
-        color: '#CBD5E1',
+        color: colors.textGray,
     },
     priceRow: {
         flexDirection: 'row',
         alignItems: 'center',
     },
     price: {
-        fontSize: 13,
-        fontWeight: '700',
+        fontSize: fontSize._12,
+        fontWeight: fontweight.bold,
         color: '#0F172A',
     },
     duration: {
-        fontSize: 11,
+        fontSize: fontSize._12,
         color: '#64748B',
-        marginLeft: 4,
+        marginLeft: spacingX._4,
     },
     enrollButton: {
         position: 'absolute',
-        right: 12,
-        bottom: 12,
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 8,
+        right: spacingX._12,
+        bottom: spacingY._12,
+        paddingHorizontal: spacingX._12,
+        paddingVertical: spacingY._8,
+        borderRadius: radius._8,
         minWidth: 72,
         alignItems: 'center',
         justifyContent: 'center',
     },
     notEnrolledButton: {
-        backgroundColor: '#2563EB',
+        backgroundColor: colors.primary,
     },
     enrolledButton: {
-        backgroundColor: '#F1F5F9',
+        backgroundColor: colors.surfaceSoft,
         borderWidth: 1,
-        borderColor: '#E2E8F0',
+        borderColor: colors.border,
     },
     enrollButtonText: {
-        fontSize: 11,
-        fontWeight: '700',
+        fontSize: fontSize._12,
+        fontWeight: fontweight.bold,
     },
     notEnrolledButtonTextActive: {
-        color: '#FFFFFF',
+        color: colors.white,
     },
     enrolledButtonTextActive: {
-        color: '#64748B',
+        color: colors.textMuted,
     },
 });

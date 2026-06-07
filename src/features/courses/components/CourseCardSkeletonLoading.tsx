@@ -1,5 +1,8 @@
 import { View } from 'react-native';
 import Skeleton from 'react-native-reanimated-skeleton';
+import { colors } from '../../../shared/theme/colors';
+import { spacingX } from '../../../shared/theme/spacing';
+import { radius } from '../../../shared/theme/radius';
 const CourseCardSkeletonLoading = () => {
     return (
 
@@ -8,12 +11,12 @@ const CourseCardSkeletonLoading = () => {
             containerStyle={{
 
                 flexDirection: 'row',
-                gap: 10,
-                backgroundColor: '#FFFFFF',
-                borderRadius: 16,
-                padding: 12,
-                marginVertical: 6,
-                marginHorizontal: 16,
+                gap: spacingX._12,
+                backgroundColor: colors.white,
+                borderRadius: radius._16,
+                padding: spacingX._12,
+                marginVertical: spacingX._8,
+                marginHorizontal: spacingX._16,
                 shadowColor: '#0F172A',
                 shadowOffset: { width: 0, height: 4 },
                 shadowOpacity: 0.05,
